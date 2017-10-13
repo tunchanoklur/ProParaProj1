@@ -13,7 +13,16 @@ class Customer implements Comparable<Customer>{
        orders=order_in;
        totalBill = 0;
     }
-   
+    /*public Customer(String n,int or1,int or2,int or3,int or4,int or5){
+       name = n;
+       orders = new int[5];
+       orders[0]= or1;
+       orders[1]= or2;
+       orders[2]= or3;
+       orders[3]= or4;
+       orders[4]= or5;
+       totalBill = 0;
+    }*/
    //method for calculate total bill
     protected void calculateBill(Product[] products){
        for(int i=0;i<5;i++){
