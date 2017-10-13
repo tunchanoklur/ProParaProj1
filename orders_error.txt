@@ -6,7 +6,7 @@ Snoopy 4 5 0 -4 0
 Evelyn O 0 1 4 7
 Xayah 6 8 0
 Greenman 0 5 0 8 0
-Woody 12 5 0 1 0
+Woody 12 5 0 l 0
 Jessie 0 0 0 4 0
 Anna 1 2 3 -5 0
 Elsa 4 2 0 0 7

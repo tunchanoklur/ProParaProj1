@@ -1,30 +1,33 @@
 package proparaproj1;
 
-public class Customer {
-   private String name;
-   private int[] orders;
-   private int totalBill;
+class Customer implements Comparable<Customer>{
+    private String name;
+    private int[] orders;
+    private int totalBill;
    
-   //Customer constructor
-   public Customer(){}
-   public Customer(String n,int or_1,int or_2,int or_3,int or_4,int or_5){
+    //Customer constructor
+    public Customer(){}
+    public Customer(String n,int[] order_in){
        name = n;
        orders = new int[5];
-       //may change
-       orders[0]=or_1;
-       orders[1]=or_2;
-       orders[2]=or_3;
-       orders[3]=or_4;
-       orders[4]=or_5;
-       
+       orders=order_in;
        totalBill = 0;
-   }
+    }
    
    //method for calculate total bill
-   private void calculateBill(){
-       /*
-         Calculate the total bill
-         Add code here
-       */
-   }
+    protected void calculateBill(Product[] products){
+       for(int i=0;i<5;i++){
+           totalBill+=orders[i]*products[i].giveprice();
+       }
+    }
+   
+    public int compareTo(Customer other){
+        if(this.totalBill>other.totalBill) return -1;
+        else if(this.totalBill<other.totalBill)return 1;
+        else return 0;
+    }
+   
+    protected void print(){
+       System.out.printf("%-8s  total bill  : %8d\n",name,totalBill);
+    }
 }
