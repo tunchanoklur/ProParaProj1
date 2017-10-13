@@ -62,7 +62,9 @@ public class Shopping {
             try{
                 for(int i=0;i<5;i++){
                     order_in[i]=Integer.parseInt(buf[i+1]);
-                    if(order_in[i]<0)throw new RuntimeException();
+                    if(order_in[i]<0){
+                        throw new RuntimeException();
+                    }
                 }
                 cus_hold[0] = new Customer(buf[0],order_in);
                 customers.add(cus_hold[0]);
@@ -113,7 +115,8 @@ public class Shopping {
             for(int a=0;a<5;a++)
                 products[a].setTotalSales(customers.get(i).orders[a]);
         }
-            
+        Arrays.sort(products);    
+        Collections.sort(customers);
                 System.out.printf("\nProducts Summary");
                 printproduct(products);
                 System.out.printf("\nCustomers Summary");
