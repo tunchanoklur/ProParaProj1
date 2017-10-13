@@ -67,9 +67,6 @@ public class Shopping {
                 cus_hold[0] = new Customer(buf[0],order_in);
                 customers.add(cus_hold[0]);
                 customers.get(j).calculateBill(products);
-                for(int i=0;i<5;i++){
-                    products[i].setTotalSales(order_in[i]);
-                }
                 j++;
             }
             catch(RuntimeException e){
@@ -112,6 +109,11 @@ public class Shopping {
             }
         }while(usr_choice!=0);
         
+        for(int i=0;i<customers.size();i++){
+            for(int a=0;a<5;a++)
+                products[a].setTotalSales(customers.get(i).orders[a]);
+        }
+            
                 System.out.printf("\nProducts Summary");
                 printproduct(products);
                 System.out.printf("\nCustomers Summary");

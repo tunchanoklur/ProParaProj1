@@ -2,7 +2,7 @@ package proparaproj1;
 
 class Customer implements Comparable<Customer>{
     private String name;
-    private int[] orders;
+    protected int[] orders;
     private int totalBill;
    
     //Customer constructor
