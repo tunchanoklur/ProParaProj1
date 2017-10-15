@@ -55,32 +55,40 @@ public class Shopping {
         }
         //get order info + calculate each bill + set total sales
         int j=0;
+        int l=0;
         while (orderScan!=null && orderScan.hasNext()){
             line = orderScan.nextLine();
             buf = line.split("\\s+");
             int[] order_in = new int[5];
             try{
-                for(int i=0;i<5;i++){
-                    order_in[i]=Integer.parseInt(buf[i+1]);
-                    if(order_in[i]<0){
-                        throw new RuntimeException();
+                for(l=0;l<5;l++){
+                    order_in[l]=Integer.parseInt(buf[l+1]);
+                    if(order_in[l]<0){
+                        throw new NumberFormatException();
                     }
                 }
                 cus_hold[0] = new Customer(buf[0],order_in);
+            }
+            catch(NumberFormatException e){
+                printFileError(buf);
+                order_in[l]=0;
+                for(int b=l+1;b<5;b++)order_in[b]=Integer.parseInt(buf[b+1]);
+                cus_hold[0] = new Customer(buf[0],order_in,true);
+            }
+            catch(ArrayIndexOutOfBoundsException e){
+                printFileError(buf);
+                for(int b=l;b<5;b++)order_in[b]=0;
+                cus_hold[0] = new Customer(buf[0],order_in,true);
+            }
+            finally{
                 customers.add(cus_hold[0]);
+                if(customers.get(j).checkfixed() == true)customers.get(j).printcorrection();
                 customers.get(j).calculateBill(products);
                 j++;
             }
-            catch(RuntimeException e){
-                printFileError(buf);
-                //System.out.printf("Correction  : %-8s %-2s %-3s %-3s %-3s %-3s\n\n",buf[0],buf[1],buf[2],buf[3],buf[4],buf[5]);
-                /*e.printStackTrace();
-                Thread.sleep(100);*/
-                continue;
-            }  
         }
-                productScan.close();
-                orderScan.close();
+                if(productScan!=null)productScan.close();
+                if(orderScan!=null)orderScan.close();
         //ask user to rollback or commit
         do{
             usr_choice=1;
