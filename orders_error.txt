@@ -3,11 +3,11 @@ Bard 1 10 5 6 O
 Braum 10 4 0 7 0
 Annie 9 0 12 4 5
 Snoopy 4 5 0 -4 0
-Evelyn O 0 1 4 7
+Evelyn O 0 1 4 -7
 Xayah 6 8 0
 Greenman 0 5 0 8 0
-Woody 12 5 0 l 0
-Jessie 0 0 0 4 0
+Woody 2 5 0 l 0
+Jessie 0 O O 4 0
 Anna 1 2 3 -5 0
 Elsa 4 2 0 0 7
 Aurora 3 -4 0 5 1

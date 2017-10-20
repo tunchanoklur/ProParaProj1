@@ -1,5 +1,5 @@
 bag 550
 t-shirt 250
 pants 350
-skirt 289
+skirt 270
 cap 665

@@ -9,7 +9,7 @@ public class Shopping {
         String productfile,orderfile,line;
         String[] buf;
         boolean filenotfound = true;
-        ArrayList <Customer> customers=new ArrayList <Customer>();
+        ArrayList<Customer> customers=new ArrayList<Customer>();
         Product[] products=new Product[5];
         Customer[] cus_hold = new Customer[1];
         int usr_choice;
@@ -59,33 +59,34 @@ public class Shopping {
         while (orderScan!=null && orderScan.hasNext()){
             line = orderScan.nextLine();
             buf = line.split("\\s+");
+            boolean fixed=false;
             int[] order_in = new int[5];
-            try{
-                for(l=0;l<5;l++){
+            for(l=0;l<5;l++){
+                try{
                     order_in[l]=Integer.parseInt(buf[l+1]);
                     if(order_in[l]<0){
                         throw new NumberFormatException();
                     }
                 }
-                cus_hold[0] = new Customer(buf[0],order_in);
+                catch(NumberFormatException e){
+                    fixed=true;
+                    order_in[l]=0;
+                }
+                catch(ArrayIndexOutOfBoundsException e){
+                    fixed=true;
+                    //printFileError(buf);
+                    for(int b=l;b<5;b++)order_in[b]=0;
+                    break;
+                }
             }
-            catch(NumberFormatException e){
+            cus_hold[0] = new Customer(buf[0],order_in);
+            customers.add(cus_hold[0]);
+            if(fixed == true){
                 printFileError(buf);
-                order_in[l]=0;
-                for(int b=l+1;b<5;b++)order_in[b]=Integer.parseInt(buf[b+1]);
-                cus_hold[0] = new Customer(buf[0],order_in,true);
+                customers.get(j).printcorrection();
             }
-            catch(ArrayIndexOutOfBoundsException e){
-                printFileError(buf);
-                for(int b=l;b<5;b++)order_in[b]=0;
-                cus_hold[0] = new Customer(buf[0],order_in,true);
-            }
-            finally{
-                customers.add(cus_hold[0]);
-                if(customers.get(j).checkfixed() == true)customers.get(j).printcorrection();
-                customers.get(j).calculateBill(products);
-                j++;
-            }
+            customers.get(j).calculateBill(products);
+            j++;
         }
                 if(productScan!=null)productScan.close();
                 if(orderScan!=null)orderScan.close();
