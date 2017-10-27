@@ -1,5 +1,7 @@
 package proparaproj1;
 
+import java.text.NumberFormat;
+
 class Customer implements Comparable<Customer>{
     private String name;
     protected int[] orders;
@@ -29,6 +31,8 @@ class Customer implements Comparable<Customer>{
     }
     
     protected void print(){
-       System.out.printf("%-8s  total bill  : %8d\n",name,totalBill);
+       NumberFormat changeformat;
+       changeformat = NumberFormat.getInstance();
+       System.out.printf("%-8s  total bill  : %10s\n",name,changeformat.format(totalBill));
     }
 }

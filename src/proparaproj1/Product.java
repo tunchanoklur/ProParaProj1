@@ -1,4 +1,5 @@
 package proparaproj1;
+import java.text.NumberFormat;
 
 class Product implements Comparable<Product>{
     //read from file
@@ -28,6 +29,8 @@ class Product implements Comparable<Product>{
         else return 0;
     }
    protected void print(){
-       System.out.printf("%-8s  total sales : %8d\n",name,totalSales);
+       NumberFormat changeformat;
+       changeformat = NumberFormat.getInstance();
+       System.out.printf("%-8s  total sales : %10s\n",name,changeformat.format(totalSales));
    }
 }

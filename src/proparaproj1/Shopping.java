@@ -24,8 +24,7 @@ public class Shopping {
             }
             catch (FileNotFoundException e){
                 // print exception message    
-                System.err.printf("%s\n",e);
-                Thread.sleep(100);
+                System.out.printf("%s\n\n",e);
                 filenotfound = true;
             }
         }while(filenotfound);
@@ -44,6 +43,7 @@ public class Shopping {
                 filenotfound = true;
             }
         }while(filenotfound);
+        System.out.println("");
         //get product info
         int k=0;
         while (productScan!=null && productScan.hasNext()){
@@ -126,10 +126,17 @@ public class Shopping {
         }
         Arrays.sort(products);    
         Collections.sort(customers);
-                System.out.printf("\nProducts Summary");
-                printproduct(products);
-                System.out.printf("\nCustomers Summary");
-                printcustomer(customers);        
+        
+        System.out.printf("\nProducts Summary");
+        printproduct(products);
+        System.out.printf("\nCustomers Summary");
+        if(!customers.isEmpty()){
+            printcustomer(customers);  
+        }
+        else{
+            System.out.println("\nThe list is empty!");
+        }
+                      
     }
     static void printproduct(Product[] products){
         System.out.printf("\n");
